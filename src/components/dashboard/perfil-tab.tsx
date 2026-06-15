@@ -49,7 +49,7 @@ export function PerfilTab({
       qc.invalidateQueries({ queryKey: ["fin", userId] });
       qc.invalidateQueries({ queryKey: ["profile", userId] });
     },
-    onError: (e) => toast.error("Error al guardar los datos."),
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Error al guardar los datos."),
   });
 
   const num = (k: keyof Fin) => (e: React.ChangeEvent<HTMLInputElement>) =>

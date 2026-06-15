@@ -74,12 +74,33 @@ export const TAB_HINT: Record<TabKey, string> = {
   empresa: "Plan corporativo y herramientas para equipos.",
 };
 
-export const fmtPYG = (n: number) =>
-  new Intl.NumberFormat("es-PY", {
+const CURRENCY_LOCALE: Record<string, string> = {
+  PYG: "es-PY",
+  USD: "en-US",
+  EUR: "de-DE",
+  BRL: "pt-BR",
+  ARS: "es-AR",
+};
+
+export function getStoredCurrency(): string {
+  if (typeof window === "undefined") return "PYG";
+  return localStorage.getItem("breezkit-currency") ?? "PYG";
+}
+
+export function setStoredCurrency(currency: string) {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("breezkit-currency", currency);
+  }
+}
+
+export const fmtCurrency = (n: number, currency?: string) =>
+  new Intl.NumberFormat(CURRENCY_LOCALE[currency ?? getStoredCurrency()] ?? "es-PY", {
     style: "currency",
-    currency: "PYG",
-    maximumFractionDigits: 0,
+    currency: currency ?? getStoredCurrency(),
+    maximumFractionDigits: (currency ?? getStoredCurrency()) === "PYG" ? 0 : 2,
   }).format(n);
+
+export const fmtPYG = (n: number) => fmtCurrency(n, getStoredCurrency());
 
 export function sanitizeText(value: string, maxLen = 500): string {
   return value

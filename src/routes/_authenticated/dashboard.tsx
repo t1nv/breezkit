@@ -1,11 +1,13 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
-import { LogOut, Moon, Sun } from "lucide-react";
+import { LogOut, Moon, Sun, Settings } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Profile, Fin, TabKey } from "@/components/dashboard/types";
 import { TAB_KEYS, TAB_LABEL, TAB_HINT } from "@/components/dashboard/types";
+import { StatCardSkeleton } from "@/components/dashboard/shared";
 import { ResumenTab } from "@/components/dashboard/resumen-tab";
 import { TransaccionesTab } from "@/components/dashboard/transacciones-tab";
 import { PresupuestosTab } from "@/components/dashboard/presupuestos-tab";
@@ -20,7 +22,7 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 
 function Dashboard() {
   const navigate = useNavigate();
-  const qc = useQueryClient();
+  const { t } = useTranslation();
   const [userId, setUserId] = useState<string | null>(null);
   const [email, setEmail] = useState<string>("");
   const [tab, setTab] = useState<TabKey>("resumen");
@@ -133,6 +135,8 @@ function Dashboard() {
   const budgets = budgetsQ.data ?? [];
   const name = profileQ.data?.display_name ?? email.split("@")[0];
 
+  const loading = userId && (profileQ.isLoading || finQ.isLoading || txQ.isLoading);
+
   const incomeBaseline = Number(fin?.monthly_income ?? 0);
   const expBaseline = Number(fin?.fixed_expenses ?? 0) + Number(fin?.variable_expenses ?? 0);
 
@@ -152,6 +156,33 @@ function Dashboard() {
   const savings = Number(fin?.current_savings ?? 0);
   const debts = Number(fin?.debts ?? 0);
   const savingsRate = income > 0 ? Math.max(0, Math.min(100, (balance / income) * 100)) : 0;
+
+  if (loading) {
+    return (
+      <div className="bk-dashboard">
+        <header className="bk-topbar sticky top-0 z-30">
+          <div className="max-w-[1500px] mx-auto px-4 md:px-8 py-4 md:py-5 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-8 bg-muted rounded animate-pulse" />
+              <div className="h-6 w-24 bg-muted rounded animate-pulse" />
+            </div>
+          </div>
+        </header>
+        <main className="max-w-[1500px] mx-auto px-4 md:px-8 py-8 md:py-12 space-y-8 md:space-y-10">
+          <div className="max-w-5xl space-y-4">
+            <div className="h-4 w-32 bg-muted rounded animate-pulse" />
+            <div className="h-12 w-64 bg-muted rounded animate-pulse" />
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -180,6 +211,13 @@ function Dashboard() {
             >
               {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </motion.button>
+            <Link
+              to="/settings"
+              aria-label="Configuración"
+              className="bk-icon-action"
+            >
+              <Settings className="h-4 w-4" />
+            </Link>
             <span className="hidden md:block bg-background border-2 border-border px-3 py-2 font-medium truncate max-w-[260px] shadow-[4px_4px_0_var(--foreground)] text-foreground">
               {email}
             </span>
@@ -190,7 +228,7 @@ function Dashboard() {
               className="bk-danger-action inline-flex items-center gap-2 px-4 py-2 font-bold"
             >
               <LogOut className="h-4 w-4" />
-              <span className="hidden sm:inline">Salir</span>
+              <span className="hidden sm:inline">{t("dashboard.signOut")}</span>
             </motion.button>
           </div>
         </div>
@@ -230,7 +268,7 @@ function Dashboard() {
             {TAB_LABEL[tab]}
           </div>
           <h1 className="mt-5 font-display text-4xl md:text-7xl font-black leading-[0.88]">
-            Hola, <span className="text-[var(--orange-glow)]">{name}</span>
+            {t("dashboard.greeting")}, <span className="text-[var(--orange-glow)]">{name}</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base md:text-lg font-medium leading-relaxed text-muted-foreground">
             {TAB_HINT[tab]}
@@ -265,7 +303,4 @@ function Dashboard() {
       </main>
     </motion.div>
   );
-
-  // dummy to silence ts about qc unused if tabs short-circuit
-  void qc;
 }

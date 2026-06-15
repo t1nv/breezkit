@@ -223,6 +223,11 @@
     "m4l": "Score financiero",
     "m4v": "82"
   },
+  "dashboard": {
+    "greeting": "Hola",
+    "signOut": "Salir",
+    "loading": "Cargando..."
+  },
   "language": {
     "switchTo": "Cambiar idioma"
   }

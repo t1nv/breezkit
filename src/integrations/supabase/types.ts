@@ -38,6 +38,36 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_requests: {
+        Row: {
+          id: string
+          company: string
+          name: string
+          email: string
+          team_size: string
+          message: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          company: string
+          name: string
+          email: string
+          team_size: string
+          message?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          company?: string
+          name?: string
+          email?: string
+          team_size?: string
+          message?: string
+          created_at?: string
+        }
+        Relationships: []
+      }
       category_budgets: {
         Row: {
           category: string

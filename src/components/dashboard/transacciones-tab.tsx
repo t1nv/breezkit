@@ -29,9 +29,9 @@ export function TransaccionesTab({ userId, txs }: { userId: string; txs: Tx[] })
       if (amt > 1_000_000_000_000) throw new Error("Monto demasiado grande");
       if (date > today) throw new Error("La fecha no puede ser futura");
       const desc = sanitizeText(description.trim());
-      if (desc.length < 10)
+      if (desc.length < 3)
         throw new Error(
-          "Agregá una descripción específica (mínimo 10 caracteres). Ej: 'Almuerzo con cliente'",
+          "Agregá una descripción de al menos 3 caracteres.",
         );
       const { error } = await supabase.from("transactions").insert({
         user_id: userId,
@@ -49,7 +49,7 @@ export function TransaccionesTab({ userId, txs }: { userId: string; txs: Tx[] })
       setDescription("");
       qc.invalidateQueries({ queryKey: ["transactions", userId] });
     },
-    onError: (e) => toast.error("Error al guardar los datos."),
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Error al guardar los datos."),
   });
 
   const update = useMutation({
@@ -63,7 +63,7 @@ export function TransaccionesTab({ userId, txs }: { userId: string; txs: Tx[] })
       setEditingId(null);
       qc.invalidateQueries({ queryKey: ["transactions", userId] });
     },
-    onError: (e) => toast.error("Error al guardar los datos."),
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Error al guardar los datos."),
   });
 
   const del = useMutation({
@@ -151,9 +151,9 @@ export function TransaccionesTab({ userId, txs }: { userId: string; txs: Tx[] })
           <input
             type="text"
             required
-            minLength={10}
+            minLength={3}
             maxLength={200}
-            placeholder="Descripción (mín 10 caracteres, sé específico)"
+            placeholder="Descripción (ej: Almuerzo con cliente)"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"

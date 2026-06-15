@@ -26,10 +26,12 @@ function AuthPage() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [emailNotConfirmed, setEmailNotConfirmed] = useState(false);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setEmailNotConfirmed(false);
     setLoading(true);
     try {
       const limit = await checkAuthRateLimit();
@@ -44,7 +46,7 @@ function AuthPage() {
           .replace(/on\w+=/gi, "")
           .trim()
           .slice(0, 100) || email.split("@")[0];
-        const { error } = await supabase.auth.signUp({
+        const { error, data } = await supabase.auth.signUp({
           email,
           password,
           options: {
@@ -53,7 +55,13 @@ function AuthPage() {
           },
         });
         if (error) throw error;
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ["#FF5A00", "#FF8C00", "#FF3D00", "#ffffff"] });
+        if (data.session) {
+          confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ["#FF5A00", "#FF8C00", "#FF3D00", "#ffffff"] });
+          navigate({ to: "/dashboard" });
+          return;
+        }
+        setError("Revisá tu bandeja de entrada y confirmá tu email para iniciar sesión.");
+        return;
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
@@ -63,11 +71,53 @@ function AuthPage() {
       const message = err instanceof Error ? err.message : "";
       if (message.includes("Email not confirmed")) {
         setError("Revisa tu bandeja de entrada y confirma tu email.");
+        setEmailNotConfirmed(true);
       } else if (message.includes("rate_limit")) {
         setError("Demasiados intentos. Espera unos minutos e intenta de nuevo.");
       } else {
         setError("Email o contraseña incorrectos.");
       }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResetPassword = async () => {
+    if (!email) {
+      setError("Ingresá tu email primero.");
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin + "/dashboard",
+      });
+      if (error) throw error;
+      setError("Te enviamos un email para restablecer tu contraseña.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error al enviar el email.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResendConfirmation = async () => {
+    if (!email) {
+      setError("Ingresá tu email primero.");
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const { error } = await supabase.auth.resend({
+        type: "signup",
+        email,
+      });
+      if (error) throw error;
+      setError("Revisá tu bandeja de entrada. Te reenviamos el email de confirmación.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error al reenviar el email.");
     } finally {
       setLoading(false);
     }
@@ -243,14 +293,33 @@ function AuthPage() {
               </button>
             </div>
 
+            {mode === "signin" && (
+              <button
+                type="button"
+                onClick={handleResetPassword}
+                className="text-xs text-muted-foreground hover:text-foreground underline-offset-2 hover:underline transition-colors"
+              >
+                ¿Olvidaste tu contraseña?
+              </button>
+            )}
+
             {error && (
               <motion.div
                 role="alert"
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-xl px-4 py-2"
+                className="text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-xl px-4 py-2 space-y-2"
               >
-                {error}
+                <p>{error}</p>
+                {emailNotConfirmed && (
+                  <button
+                    type="button"
+                    onClick={handleResendConfirmation}
+                    className="text-xs font-medium underline underline-offset-2 hover:text-destructive/80 transition-colors"
+                  >
+                    Reenviar email de confirmación
+                  </button>
+                )}
               </motion.div>
             )}
 

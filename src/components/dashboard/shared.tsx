@@ -4,6 +4,24 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Trash2 } from "lucide-react";
+
+export function Skeleton({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`animate-pulse bg-muted/60 rounded-md ${className}`}
+      aria-hidden="true"
+    />
+  );
+}
+
+export function StatCardSkeleton() {
+  return (
+    <div className="bg-card p-4 md:p-6 min-h-[142px] flex flex-col justify-between">
+      <Skeleton className="h-3 w-20" />
+      <Skeleton className="h-8 w-32 mt-5" />
+    </div>
+  );
+}
 import confetti from "canvas-confetti";
 import { getAIInsight } from "@/lib/ai.functions";
 import { fmtPYG, CATEGORIES_EXPENSE, CATEGORIES_INCOME, type Tx } from "./types";

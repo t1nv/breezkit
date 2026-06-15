@@ -43,9 +43,9 @@ export function PresupuestosTab({
       const v = Number(limit);
       if (!v || v <= 0) throw new Error("Monto inválido");
       const desc = sanitizeText(budgetDesc.trim());
-      if (desc.length < 10)
+      if (desc.length < 3)
         throw new Error(
-          "Agregá una descripción específica (mín 10 caracteres). Ej: 'Tope para delivery y restaurantes'",
+          "Agregá una descripción de al menos 3 caracteres.",
         );
       const { error } = await supabase
         .from("category_budgets")
@@ -61,7 +61,7 @@ export function PresupuestosTab({
       setBudgetDesc("");
       qc.invalidateQueries({ queryKey: ["budgets", userId] });
     },
-    onError: (e) => toast.error("Error al guardar los datos."),
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Error al guardar los datos."),
   });
 
   const updateLimit = useMutation({
@@ -129,9 +129,9 @@ export function PresupuestosTab({
           <input
             type="text"
             required
-            minLength={10}
+            minLength={3}
             maxLength={200}
-            placeholder="Descripción (mín 10 caracteres)"
+            placeholder="Descripción (ej: Delivery y restaurantes)"
             value={budgetDesc}
             onChange={(e) => setBudgetDesc(e.target.value)}
             className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"

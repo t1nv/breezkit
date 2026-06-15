@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import { inputCls } from "./shared";
 
 export function EmpresaTab() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ company: "", name: "", email: "", team_size: "", message: "" });
   const features = [
     {
       icon: "👥",
@@ -36,6 +39,28 @@ export function EmpresaTab() {
       desc: "Un especialista te ayuda a migrar e implementar Breezkit.",
     },
   ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const { error } = await supabase.from("contact_requests").insert({
+        company: form.company.trim(),
+        name: form.name.trim(),
+        email: form.email.trim(),
+        team_size: form.team_size,
+        message: form.message.trim(),
+      });
+      if (error) throw error;
+      setSent(true);
+      toast.success("Solicitud enviada");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Error al enviar la solicitud");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="space-y-8">
       <div className="border-2 border-border bg-[var(--navy-deep)] text-white p-6 md:p-10 shadow-[10px_10px_0_var(--primary)]">
@@ -73,36 +98,54 @@ export function EmpresaTab() {
             Solicitud recibida. Te contactaremos pronto.
           </div>
         ) : (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-              toast.success("Solicitud enviada");
-            }}
-            className="mt-5 grid sm:grid-cols-2 gap-3"
-          >
-            <input required placeholder="Empresa" className={inputCls} />
-            <input required placeholder="Tu nombre" className={inputCls} />
-            <input required type="email" placeholder="Email corporativo" className={inputCls} />
-            <select className={inputCls} defaultValue="">
-              <option value="" disabled>
-                Tamaño del equipo
-              </option>
-              <option>1-10</option>
-              <option>11-50</option>
-              <option>51-200</option>
-              <option>+200</option>
+          <form onSubmit={handleSubmit} className="mt-5 grid sm:grid-cols-2 gap-3">
+            <input
+              required
+              placeholder="Empresa"
+              className={inputCls}
+              value={form.company}
+              onChange={(e) => setForm({ ...form, company: e.target.value })}
+            />
+            <input
+              required
+              placeholder="Tu nombre"
+              className={inputCls}
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
+            <input
+              required
+              type="email"
+              placeholder="Email corporativo"
+              className={inputCls}
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+            <select
+              className={inputCls}
+              value={form.team_size}
+              onChange={(e) => setForm({ ...form, team_size: e.target.value })}
+              required
+            >
+              <option value="" disabled>Tamaño del equipo</option>
+              <option value="1-10">1-10</option>
+              <option value="11-50">11-50</option>
+              <option value="51-200">51-200</option>
+              <option value="+200">+200</option>
             </select>
             <textarea
               placeholder="Contanos qué necesitás (opcional)"
               maxLength={500}
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
               className="sm:col-span-2 min-h-[80px] rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <button
               type="submit"
-              className="sm:col-span-2 rounded-full bg-primary text-primary-foreground py-2.5 font-medium hover:opacity-90 transition"
+              disabled={loading}
+              className="sm:col-span-2 rounded-full bg-primary text-primary-foreground py-2.5 font-medium hover:opacity-90 transition disabled:opacity-50"
             >
-              Enviar solicitud
+              {loading ? "Enviando..." : "Enviar solicitud"}
             </button>
           </form>
         )}

@@ -30,7 +30,7 @@ export function ChatPanel() {
       qc.invalidateQueries({ queryKey: ["chat-history"] });
       setInput("");
     },
-    onError: (e) => toast.error("Error al guardar los datos."),
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Error al guardar los datos."),
   });
 
   const clear = useMutation({

@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet, redirect, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 
 const SESSION_IDLE_TIMEOUT_MS = 30 * 60 * 1000;
@@ -37,13 +38,12 @@ function useIdleTimeout(onIdle: () => void, timeoutMs: number) {
 
 function AuthGate() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [session, setSession] = useState<Session | null>(null);
   const [ready, setReady] = useState(false);
 
   const handleIdle = useCallback(async () => {
-    try {
-      await supabase.auth.signOut();
-    } catch { /* ignore */ }
+    await supabase.auth.signOut();
     navigate({ to: "/auth" });
   }, [navigate]);
 
@@ -56,12 +56,17 @@ function AuthGate() {
     });
     const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
       setSession(s);
-      if (!s) navigate({ to: "/auth" });
     });
     return () => sub.subscription.unsubscribe();
-  }, [navigate]);
+  }, []);
 
-  if (!ready) return <div className="min-h-screen flex items-center justify-center bg-background text-muted-foreground">Cargando...</div>;
+  useEffect(() => {
+    if (ready && !session) {
+      navigate({ to: "/auth" });
+    }
+  }, [ready, session, navigate]);
+
+  if (!ready) return <div className="min-h-screen flex items-center justify-center bg-background text-muted-foreground">{t("dashboard.loading")}</div>;
   if (!session) return null;
   return <Outlet />;
 }

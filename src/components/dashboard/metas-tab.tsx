@@ -31,7 +31,7 @@ export function MetasTab({ userId, goals }: { userId: string; goals: Goal[] }) {
       setDate("");
       qc.invalidateQueries({ queryKey: ["goals", userId] });
     },
-    onError: (e) => toast.error("Error al guardar los datos."),
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Error al guardar los datos."),
   });
 
   const updateAmount = useMutation({

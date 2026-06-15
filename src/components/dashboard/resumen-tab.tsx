@@ -125,7 +125,7 @@ export function ResumenTab({
       toast.success(`${v.category} ${fmtPYG(v.amount)} registrado`);
       qc.invalidateQueries({ queryKey: ["transactions", userId] });
     },
-    onError: (e) => toast.error("Error al guardar los datos."),
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Error al guardar los datos."),
   });
 
   const QUICK_PRESETS: { category: string; emoji: string; amounts: number[] }[] = [
