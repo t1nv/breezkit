@@ -384,23 +384,11 @@ This project is **proprietary software**. All rights reserved.
 <br/>
 
 <div align="center">
-  <table style="border-collapse: collapse; border: none;">
-    <tr>
-      <td style="border: none; text-align: center;">
-        <p style="font-size: 0.9rem; color: #666;">
-          Built with
-          ❤️
-          and TypeScript
-        </p>
-        <p style="font-size: 0.8rem; color: #555;">
-          &copy; 2026 <a href="https://github.com/t1nv">t1nv</a> &middot;
-          <a href="https://github.com/t1nv/breezkit">Breezkit</a>
-        </p>
-        <br/>
-        <p style="font-size: 0.8rem; color: #444;">
-          <a href="#overview">Back to top ↑</a>
-        </p>
-      </td>
-    </tr>
-  </table>
+  <p style="font-size: 0.9rem; color: #666;">
+    Built with ❤️ and TypeScript
+  </p>
+  <p style="font-size: 0.8rem; color: #555;">
+    &copy; 2026 <a href="https://github.com/t1nv">t1nv</a> &middot;
+    <a href="https://github.com/t1nv/breezkit">Breezkit</a>
+  </p>
 </div>
