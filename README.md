@@ -41,7 +41,7 @@
       <td style="border: none; padding: 0 8px;">·</td>
       <td style="border: none; padding: 0 8px;"><a href="#project-structure">Structure</a></td>
       <td style="border: none; padding: 0 8px;">·</td>
-      <td style="border: none; padding: 0 8px;"><a href="#screenshots">Screenshots</a></td>
+      <td style="border: none; padding: 0 8px;"><a href="#configuration">Configuration</a></td>
     </tr>
   </table>
 
@@ -389,7 +389,7 @@ This project is **proprietary software**. All rights reserved.
       <td style="border: none; text-align: center;">
         <p style="font-size: 0.9rem; color: #666;">
           Built with
-          <img src="https://raw.githubusercontent.com/t1nv/breezkit/main/public/heart.svg" width="14" height="14" style="vertical-align: middle;" />
+          ❤️
           and TypeScript
         </p>
         <p style="font-size: 0.8rem; color: #555;">
