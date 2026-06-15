@@ -351,43 +351,6 @@ breezkit/
 
 <br/>
 
-## <a id="screenshots"></a>Screenshots
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" width="50%">
-        <img src="https://raw.githubusercontent.com/t1nv/breezkit/main/public/screenshot-hero.png" alt="Hero Section" width="100%" style="border-radius: 12px;"/>
-        <br/>
-        <sub><strong>Hero</strong> — Split layout with dashboard preview</sub>
-      </td>
-      <td align="center" width="50%">
-        <img src="https://raw.githubusercontent.com/t1nv/breezkit/main/public/screenshot-features.png" alt="Features Grid" width="100%" style="border-radius: 12px;"/>
-        <br/>
-        <sub><strong>Features</strong> — 3-column card grid with micro-interactions</sub>
-      </td>
-    </tr>
-    <tr>
-      <td align="center" width="50%">
-        <img src="https://raw.githubusercontent.com/t1nv/breezkit/main/public/screenshot-pricing.png" alt="Pricing Section" width="100%" style="border-radius: 12px;"/>
-        <br/>
-        <sub><strong>Pricing</strong> — Clean centered card with feature list</sub>
-      </td>
-      <td align="center" width="50%">
-        <img src="https://raw.githubusercontent.com/t1nv/breezkit/main/public/screenshot-faq.png" alt="FAQ Section" width="100%" style="border-radius: 12px;"/>
-        <br/>
-        <sub><strong>FAQ</strong> — Animated accordion with rotating icons</sub>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<br/>
-
----
-
-<br/>
-
 ## <a id="configuration"></a>Configuration
 
 ### Environment Variables
