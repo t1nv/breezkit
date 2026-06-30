@@ -2,7 +2,6 @@ import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-ro
 import { useState } from "react";
 import { motion } from "motion/react";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
 import { useServerFn } from "@tanstack/react-start";
 import { checkAuthRateLimit } from "@/lib/auth-check.server";
 import confetti from "canvas-confetti";
@@ -131,15 +130,17 @@ function AuthPage() {
       if (limit.blocked) {
         throw new Error("rate_limit");
       }
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin + "/dashboard",
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: window.location.origin + "/dashboard",
+        },
       });
-      if (result.error) {
-        setError(result.error.message ?? "Error al iniciar con Google");
+      if (error) {
+        setError(error.message ?? "Error al iniciar con Google");
         return;
       }
-      if (result.redirected) return;
-      navigate({ to: "/dashboard" });
+      // signInWithOAuth redirects the browser to Google; nothing else to do here.
     } catch (err) {
       const message = err instanceof Error ? err.message : "";
       if (message.includes("rate_limit")) {

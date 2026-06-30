@@ -1,5 +1,26 @@
-const SUPABASE_PROJECT = process.env.VITE_SUPABASE_PROJECT_ID || process.env.SUPABASE_PROJECT_ID || "tqryeoudluxcorzixhbi";
-const SUPABASE_URL = `https://${SUPABASE_PROJECT}.supabase.co`;
+// Derive the Supabase origin from the connected project's URL when available,
+// falling back to the project id. Using the full SUPABASE_URL keeps the CSP in
+// sync with whatever Supabase project is actually connected.
+function resolveSupabaseProjectRef(): string {
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (url) {
+    const match = url.match(/^https?:\/\/([^.]+)\.supabase\.co/i);
+    if (match) return match[1];
+  }
+  return (
+    process.env.VITE_SUPABASE_PROJECT_ID ||
+    process.env.SUPABASE_PROJECT_ID ||
+    ""
+  );
+}
+
+const SUPABASE_PROJECT = resolveSupabaseProjectRef();
+const SUPABASE_ORIGIN = SUPABASE_PROJECT
+  ? `https://${SUPABASE_PROJECT}.supabase.co`
+  : "https://*.supabase.co";
+const SUPABASE_WS_ORIGIN = SUPABASE_PROJECT
+  ? `wss://${SUPABASE_PROJECT}.supabase.co`
+  : "wss://*.supabase.co";
 
 /**
  * Generate a CSP nonce using the Web Crypto API.
@@ -39,9 +60,9 @@ function buildCsp(nonce?: string): string {
     "default-src 'self'",
     `script-src 'self' ${scriptSrc}`,
     "style-src 'self' 'unsafe-inline'",
-    `img-src 'self' data: blob: https://${SUPABASE_PROJECT}.supabase.co https://*.supabase.co`,
+    `img-src 'self' data: blob: ${SUPABASE_ORIGIN} https://*.supabase.co`,
     `font-src 'self' https://fonts.gstatic.com data:`,
-    `connect-src 'self' ${SUPABASE_URL} https://ai.gateway.lovable.dev wss://${SUPABASE_PROJECT}.supabase.co`,
+    `connect-src 'self' ${SUPABASE_ORIGIN} https://*.supabase.co ${SUPABASE_WS_ORIGIN} wss://*.supabase.co https://ai.gateway.lovable.dev`,
     "frame-src 'none'",
     "frame-ancestors 'none'",
     "object-src 'none'",
