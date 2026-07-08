@@ -97,7 +97,7 @@ npm run dev                  # http://localhost:3000
 
 ```bash
 npm run dev        # dev server
-npm run build      # production build (Vercel preset by default, see vite.config.ts)
+npm run build      # production build (Node server preset, see vite.config.ts)
 npm run preview    # preview the production build
 npm test           # vitest
 npm run lint       # eslint

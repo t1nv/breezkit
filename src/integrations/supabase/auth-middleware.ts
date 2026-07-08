@@ -12,13 +12,7 @@ function validateOrigin(request: Request): void {
   // If both are absent, this is likely a direct API call (curl, fetch from server) — allow.
   if (!origin && !referer) return;
 
-  const ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "breezkit.app",
-    "breezkit.vercel.app",
-    "breezkit.netlify.app",
-  ];
+  const ALLOWED_HOSTS = ["localhost", "127.0.0.1", "breezkit.app", "breezkit.netlify.app"];
 
   const source = origin ?? referer!;
   let hostname: string;

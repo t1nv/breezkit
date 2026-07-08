@@ -10,7 +10,7 @@ import { loadEnv } from "vite";
 // Load ALL vars from .env (not just VITE_*) into process.env so server functions
 // (AI provider, Supabase service role, etc.) can read them under `vite dev`.
 // The prefix "" means: include every key. Vite only injects VITE_* into the client
-// bundle, so non-VITE secrets stay server-side. On Vercel these come from project env.
+// bundle, so non-VITE secrets stay server-side. In production these come from the host's env.
 const mode = process.env.NODE_ENV || "development";
 const env = loadEnv(mode, process.cwd(), "");
 for (const [key, value] of Object.entries(env)) {
@@ -19,7 +19,7 @@ for (const [key, value] of Object.entries(env)) {
 
 export default defineConfig({
   nitro: {
-    preset: "vercel",
+    preset: "node-server",
   },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).

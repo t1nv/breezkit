@@ -9,6 +9,5 @@ routeTree.gen.ts
 .agents
 .claude
 skills-lock.json
-.vercel
 .nitro
 .tanstack
