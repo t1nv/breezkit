@@ -1,0 +1,237 @@
+{
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "getStarted": "Get Started Free",
+    "github": "GitHub"
+  },
+  "hero": {
+    "badge": "AI Financial Advisor",
+    "headline": "Your finances,",
+    "headlineAccent": "clear in minutes.",
+    "subtitle": "Breezkit analyzes your income, expenses, and goals with artificial intelligence to give you an actionable savings and investment plan — tailored to your risk profile.",
+    "emailPlaceholder": "your@email.com",
+    "cta": "Get started free",
+    "done": "Done!",
+    "trustText": "active users",
+    "trustPrefix": "+120"
+  },
+  "features": {
+    "eyebrow": "Features",
+    "title": "Everything you need, nothing you don't.",
+    "subtitle": "A powerful toolkit designed to feel simple.",
+    "items": {
+      "aiAnalysis": {
+        "title": "AI Analysis",
+        "desc": "Algorithms that evaluate your habits and generate accurate recommendations in real time."
+      },
+      "smartSaving": {
+        "title": "Smart Saving",
+        "desc": "Detect money leaks and automatically build your emergency fund."
+      },
+      "investments": {
+        "title": "Tailored Investments",
+        "desc": "Suggestions adapted to your risk profile, horizon, and available capital."
+      },
+      "privacy": {
+        "title": "Privacy First",
+        "desc": "Your data is encrypted end-to-end. You decide what to share and when."
+      },
+      "alerts": {
+        "title": "Live Alerts",
+        "desc": "Notifications when a budget approaches its limit or when we detect something unusual."
+      },
+      "dashboard": {
+        "title": "Full Dashboard",
+        "desc": "Visualize your finances with clear charts and actionable metrics instantly."
+      },
+      "goals": {
+        "title": "Custom Goals",
+        "desc": "Set savings goals with deadlines and receive automatic progress tracking."
+      },
+      "support": {
+        "title": "Continuous Support",
+        "desc": "We evolve with you. New features and improvements every month."
+      },
+      "sync": {
+        "title": "Full Sync",
+        "desc": "Your data instantly across all devices. Never lose track."
+      }
+    }
+  },
+  "stats": {
+    "free": "Ads",
+    "setup": "Cost",
+    "recommendations": "Recommendations",
+    "available": "Encrypted",
+    "v0": "0",
+    "v1": "$0",
+    "v2": "AI",
+    "v3": "AES-256"
+  },
+  "pricing": {
+    "eyebrow": "Pricing",
+    "title": "Everything free. Forever.",
+    "subtitle": "No plans, no artificial limits, no fine print.",
+    "badge": "Open & Free",
+    "perMonth": "/ forever",
+    "fullAccess": "Full access to all features, no restrictions.",
+    "features": {
+      "unlimited": "Unlimited transactions",
+      "ai": "Advanced contextual AI",
+      "goals": "Goals and investments",
+      "alerts": "Live alerts",
+      "multi": "Multi-user and teams",
+      "reports": "Consolidated reports",
+      "support": "Community support",
+      "noCard": "No credit card required"
+    },
+    "cta": "Get started free"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "Do I need financial knowledge to use Breezkit?",
+        "a": "No. The AI translates your data into concrete, understandable steps. If you can read a text message, you can use Breezkit."
+      },
+      {
+        "q": "Is my data safe?",
+        "a": "Yes. We encrypt information in transit and at rest. We never sell data and you control what is shared."
+      },
+      {
+        "q": "Can I cancel anytime?",
+        "a": "Yes, no commitment or hidden costs. The Free plan is forever."
+      },
+      {
+        "q": "Does it work for businesses?",
+        "a": "Yes. The Enterprise plan includes multi-user, consolidated reports, and dedicated support."
+      },
+      {
+        "q": "What devices does it work on?",
+        "a": "It's a responsive web app: works on mobile, tablet, and desktop without installing anything."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Take control of your money today.",
+    "subtitle": "Join the first wave of Breezkit users and start receiving personalized AI recommendations.",
+    "cta": "Get Started Free",
+    "github": "View on GitHub"
+  },
+  "footer": {
+    "description": "Digital financial advisor powered by artificial intelligence.",
+    "product": "Product",
+    "legal": "Legal",
+    "resources": "Resources",
+    "features": "Features",
+    "pricing": "Pricing",
+    "signUp": "Sign Up",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact",
+    "blog": "Blog",
+    "api": "API",
+    "status": "Status",
+    "copyright": "All rights reserved.",
+    "tagline": "Made with care for your finances."
+  },
+  "howItWorks": {
+    "eyebrow": "Process",
+    "title": "Your money, step by step.",
+    "subtitle": "Three simple steps to take control of your finances.",
+    "s1": "Connect your accounts",
+    "s1d": "Link your bank accounts, digital wallets, and cards in seconds. End-to-end encrypted.",
+    "s2": "AI analyzes your profile",
+    "s2d": "Our AI studies your income, expenses, and goals to build a complete financial profile.",
+    "s3": "Receive your plan",
+    "s3d": "Get personalized recommendations for saving, investing, and spending with concrete steps."
+  },
+  "security": {
+    "eyebrow": "Security",
+    "title": "Your data, your control.",
+    "subtitle": "Privacy is not an option — it's the foundation of the product.",
+    "s1": "AES-256 Encryption",
+    "s1d": "All your data is encrypted in transit and at rest using military-grade standards.",
+    "s2": "Open Source",
+    "s2d": "You can audit every line of code. Total transparency and an active community.",
+    "s3": "No Ads",
+    "s3d": "We don't sell data. We don't show ads. Your attention is not the product.",
+    "s4": "Full Control",
+    "s4d": "Export or delete your data anytime. No hurdles, no delays."
+  },
+  "useCases": {
+    "eyebrow": "Use Cases",
+    "title": "For you, for your team, for your business.",
+    "subtitle": "Breezkit adapts to your financial reality.",
+    "s1": "Individual",
+    "s1d": "Take control of your personal finances, save for your goals, and optimize daily spending.",
+    "v1": "$2,400",
+    "v1l": "avg annual savings",
+    "s2": "Couple",
+    "s2d": "Shared finances without conflict. Common goals, synced budgets, no surprises.",
+    "v2": "42%",
+    "v2l": "fewer money arguments",
+    "s3": "Freelancer",
+    "s3d": "Separate income from expenses, estimate taxes, and project slow months with ease.",
+    "v3": "15 min",
+    "v3l": "per week on finances",
+    "s4": "SME",
+    "s4d": "Multiple users, consolidated reports, and real-time cash flow for your business.",
+    "v4": "+3",
+    "v4l": "users per account"
+  },
+  "comparison": {
+    "eyebrow": "Comparison",
+    "title": "Why Breezkit?",
+    "subtitle": "We're not Excel on steroids. Nor a traditional digital bank.",
+    "h1": "Traditional",
+    "h2": "Breezkit",
+    "r1": "Contextual AI",
+    "r2": "End-to-end encryption",
+    "r3": "Free forever",
+    "r4": "Open source",
+    "r5": "Cross-platform",
+    "r6": "Weekly updates"
+  },
+  "integrations": {
+    "eyebrow": "Integrations",
+    "title": "Connect your ecosystem.",
+    "subtitle": "Coming soon: link your favorite financial tools effortlessly.",
+    "i1": "Banks",
+    "i1d": "Checking accounts, savings, credit cards",
+    "i2": "Wallets",
+    "i2d": "Mercado Pago, PayPal, and more",
+    "i3": "Fintechs",
+    "i3d": "Ualá, Lemon, Buenbit",
+    "i4": "Accounting",
+    "i4d": "QuickBooks, Xero, General ledger"
+  },
+  "dashboardPreview": {
+    "eyebrow": "Dashboard",
+    "title": "Sneak peek.",
+    "subtitle": "This is what control looks like.",
+    "m1l": "Monthly income",
+    "m1v": "$4,860",
+    "m2l": "Monthly expenses",
+    "m2v": "$3,210",
+    "m3l": "Monthly savings",
+    "m3v": "$1,650",
+    "m4l": "Financial score",
+    "m4v": "82"
+  },
+  "dashboard": {
+    "greeting": "Hello",
+    "signOut": "Sign out",
+    "loading": "Loading...",
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening"
+  },
+  "language": {
+    "switchTo": "Switch language"
+  }
+}

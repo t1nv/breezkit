@@ -1,0 +1,1 @@
+ALTER TABLE public.category_budgets ADD COLUMN IF NOT EXISTS description text;

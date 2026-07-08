@@ -1,0 +1,237 @@
+{
+  "nav": {
+    "features": "Recursos",
+    "pricing": "Preços",
+    "faq": "FAQ",
+    "contact": "Contato",
+    "getStarted": "Começar Grátis",
+    "github": "GitHub"
+  },
+  "hero": {
+    "badge": "Assessor financeiro com IA",
+    "headline": "Suas finanças,",
+    "headlineAccent": "claras em minutos.",
+    "subtitle": "O Breezkit analisa sua renda, gastos e metas com inteligência artificial para criar um plano acionável de poupança e investimento — adaptado ao seu perfil de risco.",
+    "emailPlaceholder": "voce@email.com",
+    "cta": "Começar grátis",
+    "done": "Pronto!",
+    "trustText": "usuários ativos",
+    "trustPrefix": "+120"
+  },
+  "features": {
+    "eyebrow": "Recursos",
+    "title": "Tudo o que você precisa, sem fricção.",
+    "subtitle": "Uma caixa de ferramentas poderosa, feita para parecer simples.",
+    "items": {
+      "aiAnalysis": {
+        "title": "Análise com IA",
+        "desc": "Algoritmos que avaliam seus hábitos e geram recomendações precisas em tempo real."
+      },
+      "smartSaving": {
+        "title": "Poupança inteligente",
+        "desc": "Detecta vazamentos de dinheiro e constrói automaticamente seu fundo de emergência."
+      },
+      "investments": {
+        "title": "Investimentos sob medida",
+        "desc": "Sugestões adaptadas ao seu perfil de risco, horizonte e capital disponível."
+      },
+      "privacy": {
+        "title": "Privacidade em primeiro lugar",
+        "desc": "Seus dados criptografados de ponta a ponta. Você decide o que compartilhar e quando."
+      },
+      "alerts": {
+        "title": "Alertas ao vivo",
+        "desc": "Notificações quando um orçamento se aproxima do limite ou detectamos algo estranho."
+      },
+      "dashboard": {
+        "title": "Dashboard completo",
+        "desc": "Visualize suas finanças com gráficos claros e métricas acionáveis na hora."
+      },
+      "goals": {
+        "title": "Metas personalizadas",
+        "desc": "Defina objetivos de poupança com prazos e receba acompanhamento automático do progresso."
+      },
+      "support": {
+        "title": "Suporte contínuo",
+        "desc": "Evoluímos com você. Novos recursos e melhorias todo mês."
+      },
+      "sync": {
+        "title": "Sincronização total",
+        "desc": "Seus dados na hora em todos os seus dispositivos. Nunca perca o fio."
+      }
+    }
+  },
+  "stats": {
+    "free": "Anúncios",
+    "setup": "Custo",
+    "recommendations": "Recomendações",
+    "available": "Criptografia",
+    "v0": "0",
+    "v1": "R$0",
+    "v2": "IA",
+    "v3": "AES-256"
+  },
+  "pricing": {
+    "eyebrow": "Preços",
+    "title": "Tudo grátis. Para sempre.",
+    "subtitle": "Sem planos, sem limites artificiais, sem letras miúdas.",
+    "badge": "Open & Free",
+    "perMonth": "/ sempre",
+    "fullAccess": "Acesso completo a todos os recursos, sem restrições.",
+    "features": {
+      "unlimited": "Transações ilimitadas",
+      "ai": "IA contextual avançada",
+      "goals": "Metas e investimentos",
+      "alerts": "Alertas ao vivo",
+      "multi": "Multiusuário e equipes",
+      "reports": "Relatórios consolidados",
+      "support": "Suporte da comunidade",
+      "noCard": "Sem cartão de crédito"
+    },
+    "cta": "Começar grátis"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Perguntas frequentes",
+    "items": [
+      {
+        "q": "Preciso de conhecimentos financeiros para usar o Breezkit?",
+        "a": "Não. A IA traduz seus dados em passos concretos e compreensíveis. Se você sabe ler uma mensagem no WhatsApp, sabe usar o Breezkit."
+      },
+      {
+        "q": "Meus dados estão seguros?",
+        "a": "Sim. Criptografamos as informações em trânsito e em repouso. Nunca vendemos dados e você controla o que é compartilhado."
+      },
+      {
+        "q": "Posso cancelar quando quiser?",
+        "a": "Sim, sem fidelidade nem custos ocultos. O plano Free é para sempre."
+      },
+      {
+        "q": "Funciona para empresas?",
+        "a": "Sim. O plano Empresa inclui multiusuário, relatórios consolidados e suporte dedicado."
+      },
+      {
+        "q": "Em quais dispositivos funciona?",
+        "a": "É uma web app responsiva: funciona no celular, tablet e desktop, sem instalar nada."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Assuma o controle do seu dinheiro hoje.",
+    "subtitle": "Junte-se à primeira onda de usuários do Breezkit e comece a receber recomendações personalizadas com IA.",
+    "cta": "Começar Grátis",
+    "github": "Ver no GitHub"
+  },
+  "footer": {
+    "description": "Assessor financeiro digital impulsionado por inteligência artificial.",
+    "product": "Produto",
+    "legal": "Legal",
+    "resources": "Recursos",
+    "features": "Recursos",
+    "pricing": "Preços",
+    "signUp": "Cadastrar-se",
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "contact": "Contato",
+    "blog": "Blog",
+    "api": "API",
+    "status": "Status",
+    "copyright": "Todos os direitos reservados.",
+    "tagline": "Feito com cuidado para as suas finanças."
+  },
+  "howItWorks": {
+    "eyebrow": "Processo",
+    "title": "Seu dinheiro, passo a passo.",
+    "subtitle": "Três passos simples para assumir o controle das suas finanças.",
+    "s1": "Conecte suas contas",
+    "s1d": "Vincule suas contas bancárias, carteiras digitais e cartões em segundos. Tudo criptografado de ponta a ponta.",
+    "s2": "A IA analisa seu perfil",
+    "s2d": "Nossa inteligência artificial estuda sua renda, gastos e metas para criar um perfil financeiro completo.",
+    "s3": "Receba seu plano",
+    "s3d": "Obtenha recomendações personalizadas de poupança, investimento e gastos com passos concretos."
+  },
+  "security": {
+    "eyebrow": "Segurança",
+    "title": "Seus dados, seu controle.",
+    "subtitle": "Privacidade não é uma opção, é a base do produto.",
+    "s1": "Criptografia AES-256",
+    "s1d": "Todos os seus dados são criptografados em trânsito e em repouso com padrão militar.",
+    "s2": "Código aberto",
+    "s2d": "Você pode auditar cada linha de código. Transparência total e comunidade ativa.",
+    "s3": "Sem publicidade",
+    "s3d": "Não vendemos dados. Não mostramos anúncios. Sua atenção não é o produto.",
+    "s4": "Controle total",
+    "s4d": "Exporte ou exclua seus dados quando quiser. Sem barreiras nem demoras."
+  },
+  "useCases": {
+    "eyebrow": "Para quem",
+    "title": "Para você, para sua equipe, para seu negócio.",
+    "subtitle": "O Breezkit se adapta à sua realidade financeira.",
+    "s1": "Individual",
+    "s1d": "Controle suas finanças pessoais, poupe para suas metas e otimize seus gastos do dia a dia.",
+    "v1": "+R$2.400",
+    "v1l": "poupança anual média",
+    "s2": "Casal",
+    "s2d": "Finanças compartilhadas sem conflitos. Metas em comum, orçamentos sincronizados, sem surpresas.",
+    "v2": "42%",
+    "v2l": "menos brigas por dinheiro",
+    "s3": "Freelancer",
+    "s3d": "Separar renda de gastos, calcular impostos e projetar meses fracos nunca foi tão fácil.",
+    "v3": "15 min",
+    "v3l": "por semana em finanças",
+    "s4": "PME",
+    "s4d": "Múltiplos usuários, relatórios consolidados e fluxo de caixa em tempo real para o seu negócio.",
+    "v4": "+3",
+    "v4l": "usuários por conta"
+  },
+  "comparison": {
+    "eyebrow": "Comparativo",
+    "title": "Por que Breezkit?",
+    "subtitle": "Não somos um Excel com esteroides. Nem um banco digital tradicional.",
+    "h1": "Tradicional",
+    "h2": "Breezkit",
+    "r1": "IA contextual",
+    "r2": "Criptografia de ponta a ponta",
+    "r3": "Gratuito para sempre",
+    "r4": "Código aberto",
+    "r5": "Multiplataforma",
+    "r6": "Atualizações semanais"
+  },
+  "integrations": {
+    "eyebrow": "Integrações",
+    "title": "Conecte com o seu ecossistema.",
+    "subtitle": "Em breve: vincule suas ferramentas financeiras favoritas sem esforço.",
+    "i1": "Bancos",
+    "i1d": "Contas correntes, poupanças, cartões",
+    "i2": "Carteiras",
+    "i2d": "Mercado Pago, PayPal e mais",
+    "i3": "Fintechs",
+    "i3d": "Nubank, PicPay, Buenbit",
+    "i4": "Contabilidade",
+    "i4d": "QuickBooks, Xero, Balanço geral"
+  },
+  "dashboardPreview": {
+    "eyebrow": "Dashboard",
+    "title": "Prévia do painel.",
+    "subtitle": "É assim que se parece ter o controle das suas finanças.",
+    "m1l": "Renda mensal",
+    "m1v": "R$4.860",
+    "m2l": "Gastos do mês",
+    "m2v": "R$3.210",
+    "m3l": "Poupança do mês",
+    "m3v": "R$1.650",
+    "m4l": "Score financeiro",
+    "m4v": "82"
+  },
+  "dashboard": {
+    "greeting": "Olá",
+    "signOut": "Sair",
+    "loading": "Carregando...",
+    "morning": "Bom dia",
+    "afternoon": "Boa tarde",
+    "evening": "Boa noite"
+  },
+  "language": {
+    "switchTo": "Mudar idioma"
+  }
+}
