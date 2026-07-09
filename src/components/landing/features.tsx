@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
+import { ParallaxBlob } from "./scroll-fx";
 import {
   Bot,
   Wallet,
@@ -143,7 +144,10 @@ export function Features() {
   return (
     <section id="features" className="py-24 md:py-32 relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0 select-none">
-        <div className="absolute top-1/4 left-1/4 w-[800px] h-[800px] rounded-full bg-primary/[0.04] blur-[160px]" />
+        <ParallaxBlob
+          distance={-70}
+          className="absolute top-1/4 left-1/4 w-[800px] h-[800px] rounded-full bg-primary/[0.04] blur-[160px]"
+        />
       </div>
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <SectionHeader

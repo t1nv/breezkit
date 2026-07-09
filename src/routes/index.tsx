@@ -39,13 +39,14 @@ function Landing() {
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.98]);
+  const heroY = useTransform(scrollYProgress, [0, 0.15], [0, -30]);
 
   return (
     <div className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
       <BackgroundDecor />
       <Header />
       <main>
-        <motion.div style={{ opacity: heroOpacity, scale: heroScale }}>
+        <motion.div style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}>
           <Hero />
         </motion.div>
         <Features />

@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { User, Heart, Briefcase, Building2 } from "lucide-react";
 import { SectionHeader } from "./section-header";
+import { ParallaxBlob } from "./scroll-fx";
 
 const cards = [
   { key: "s1", icon: User, idx: 0, tinted: false },
@@ -16,7 +17,10 @@ export function UseCases() {
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0 select-none">
-        <div className="absolute bottom-1/3 right-1/4 w-[600px] h-[600px] rounded-full bg-secondary/[0.03] blur-[140px]" />
+        <ParallaxBlob
+          distance={-50}
+          className="absolute bottom-1/3 right-1/4 w-[600px] h-[600px] rounded-full bg-secondary/[0.03] blur-[140px]"
+        />
       </div>
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <SectionHeader

@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { Check, X } from "lucide-react";
 import { SectionHeader } from "./section-header";
+import { ExpandOnScroll, ParallaxBlob } from "./scroll-fx";
 
 const ROW_KEYS = ["r1", "r2", "r3", "r4", "r5", "r6"];
 
@@ -11,7 +12,10 @@ export function Comparison() {
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0 select-none">
-        <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] rounded-full bg-primary/[0.02] blur-[120px]" />
+        <ParallaxBlob
+          distance={40}
+          className="absolute top-1/2 left-1/3 w-[500px] h-[500px] rounded-full bg-primary/[0.02] blur-[120px]"
+        />
       </div>
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         <SectionHeader
@@ -20,13 +24,7 @@ export function Comparison() {
           subtitle={t("comparison.subtitle")}
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-16 rounded-2xl border border-border overflow-hidden shadow-[0_10px_30px_-10px_rgba(62,42,32,0.12)]"
-        >
+        <ExpandOnScroll className="mt-16 rounded-2xl border border-border overflow-hidden shadow-[0_10px_30px_-10px_rgba(62,42,32,0.12)]">
           <div className="grid grid-cols-3 gap-px bg-border">
             <div className="bg-card p-4 md:p-5">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -71,7 +69,7 @@ export function Comparison() {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </ExpandOnScroll>
       </div>
     </section>
   );

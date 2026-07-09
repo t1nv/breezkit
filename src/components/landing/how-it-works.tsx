@@ -1,18 +1,30 @@
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "./section-header";
+import { ParallaxBlob } from "./scroll-fx";
 
 const STEP_KEYS = ["s1", "s2", "s3"] as const;
 
 export function HowItWorks() {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 0.7", "start 0.25"],
+  });
+  const lineScaleX = useTransform(scrollYProgress, [0, 1], reduced ? [1, 1] : [0, 1]);
 
   return (
-    <section id="how-it-works" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="how-it-works" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0 select-none">
-        <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] rounded-full bg-primary/[0.03] blur-[140px]" />
+        <ParallaxBlob
+          distance={55}
+          className="absolute top-1/2 right-1/4 w-[600px] h-[600px] rounded-full bg-primary/[0.03] blur-[140px]"
+        />
       </div>
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <SectionHeader
@@ -23,8 +35,9 @@ export function HowItWorks() {
         />
 
         <ol className="mt-16 grid md:grid-cols-3 gap-10 md:gap-8 relative">
-          <div
+          <motion.div
             aria-hidden
+            style={{ scaleX: lineScaleX, transformOrigin: "0% 50%" }}
             className="pointer-events-none absolute top-7 left-[calc(16.666%+2rem)] right-[calc(16.666%+2rem)] h-px hidden md:block bg-gradient-to-r from-transparent via-primary/25 to-transparent"
           />
 

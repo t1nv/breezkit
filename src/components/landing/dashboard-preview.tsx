@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { SectionHeader } from "./section-header";
+import { ExpandOnScroll, ParallaxBlob } from "./scroll-fx";
 
 const METRIC_KEYS = ["m1", "m2", "m3", "m4"];
 
@@ -19,7 +20,10 @@ export function DashboardPreview() {
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0 select-none">
-        <div className="absolute top-1/3 left-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.03] blur-[160px]" />
+        <ParallaxBlob
+          distance={-60}
+          className="absolute top-1/3 left-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.03] blur-[160px]"
+        />
       </div>
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <SectionHeader
@@ -28,11 +32,8 @@ export function DashboardPreview() {
           subtitle={t("dashboardPreview.subtitle")}
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        <ExpandOnScroll
+          strong
           className="mt-16 rounded-2xl border border-border bg-card p-6 md:p-8 shadow-[0_10px_30px_-10px_rgba(62,42,32,0.12)]"
         >
           <div className="flex items-center gap-1.5 mb-6 pb-4 border-b border-border">
@@ -106,7 +107,7 @@ export function DashboardPreview() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </ExpandOnScroll>
       </div>
     </section>
   );

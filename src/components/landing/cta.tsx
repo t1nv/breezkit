@@ -3,8 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import { GithubIcon } from "@/components/icons/github";
-import { Reveal } from "./reveal";
 import { GITHUB_URL } from "./constants";
+import { ExpandOnScroll, ParallaxBlob } from "./scroll-fx";
 
 export function CTA() {
   const { t } = useTranslation();
@@ -12,17 +12,19 @@ export function CTA() {
   return (
     <section id="contact" className="py-24 md:py-32 relative">
       <div className="max-w-5xl mx-auto px-6">
-        <Reveal>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        <ExpandOnScroll className="relative rounded-2xl">
+          <div
             className="relative overflow-hidden rounded-2xl p-10 md:p-16 border border-border"
             style={{ background: "var(--gradient-hero)" }}
           >
-            <div className="absolute -top-20 left-1/3 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
-            <div className="absolute -bottom-20 right-1/3 h-64 w-64 rounded-full bg-secondary/8 blur-3xl" />
+            <ParallaxBlob
+              distance={30}
+              className="absolute -top-20 left-1/3 h-64 w-64 rounded-full bg-primary/10 blur-3xl"
+            />
+            <ParallaxBlob
+              distance={-30}
+              className="absolute -bottom-20 right-1/3 h-64 w-64 rounded-full bg-secondary/8 blur-3xl"
+            />
             <div className="relative max-w-2xl">
               <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight text-foreground">
                 {t("cta.title")}
@@ -52,8 +54,8 @@ export function CTA() {
                 </motion.a>
               </div>
             </div>
-          </motion.div>
-        </Reveal>
+          </div>
+        </ExpandOnScroll>
       </div>
     </section>
   );

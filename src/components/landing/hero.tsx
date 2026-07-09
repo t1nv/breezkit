@@ -1,15 +1,27 @@
+import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { motion } from "motion/react";
+import { motion, useReducedMotion, useTransform } from "motion/react";
 import { ArrowRight, Sparkles, TrendingUp } from "lucide-react";
 import { Reveal } from "./reveal";
+import { useSectionExit, useTilt } from "./scroll-fx";
 
 const CHART_BARS = [38, 52, 44, 66, 58, 82, 74];
 
 /** Product-shaped hero art: composed from the app's own visual system. */
-function HeroPreview() {
+function HeroPreview({
+  driftGoal,
+  driftInsight,
+}: {
+  driftGoal: ReturnType<typeof useTransform<number, number>>;
+  driftInsight: ReturnType<typeof useTransform<number, number>>;
+}) {
   return (
-    <div aria-hidden className="relative select-none" role="presentation">
+    <div
+      aria-hidden
+      className="relative select-none [transform-style:preserve-3d]"
+      role="presentation"
+    >
       {/* Main balance card */}
       <motion.div
         initial={{ opacity: 0, y: 24, rotate: 1.5 }}
@@ -46,45 +58,55 @@ function HeroPreview() {
         </div>
       </motion.div>
 
-      {/* Goal card */}
+      {/* Goal card — drifts down as the hero scrolls out */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="bk-float-slow absolute -left-10 sm:-left-16 top-40 z-20 w-52 rounded-xl border border-border bg-card p-4 shadow-[0_15px_40px_-15px_rgba(62,42,32,0.22)] -rotate-2"
+        style={{ y: driftGoal }}
+        className="absolute -left-10 sm:-left-16 top-40 z-20 w-52"
       >
-        <div className="flex items-center justify-between text-[11px]">
-          <span className="font-semibold text-foreground">Meta: Aguinaldo</span>
-          <span className="text-muted-foreground">68%</span>
-        </div>
-        <div className="mt-2 h-1.5 rounded-full bg-muted overflow-hidden">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "68%" }}
-            transition={{ duration: 0.9, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="h-full rounded-full"
-            style={{ background: "var(--gradient-accent)" }}
-          />
-        </div>
-        <p className="mt-2 text-[10px] text-muted-foreground">Gs 3.400.000 de Gs 5.000.000</p>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="bk-float-slow rounded-xl border border-border bg-card p-4 shadow-[0_15px_40px_-15px_rgba(62,42,32,0.22)] -rotate-2"
+        >
+          <div className="flex items-center justify-between text-[11px]">
+            <span className="font-semibold text-foreground">Meta: Aguinaldo</span>
+            <span className="text-muted-foreground">68%</span>
+          </div>
+          <div className="mt-2 h-1.5 rounded-full bg-muted overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "68%" }}
+              transition={{ duration: 0.9, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full rounded-full"
+              style={{ background: "var(--gradient-accent)" }}
+            />
+          </div>
+          <p className="mt-2 text-[10px] text-muted-foreground">Gs 3.400.000 de Gs 5.000.000</p>
+        </motion.div>
       </motion.div>
 
-      {/* AI insight chip */}
+      {/* AI insight chip — drifts up as the hero scrolls out */}
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
-        className="bk-float absolute -right-4 sm:-right-12 -bottom-8 z-20 max-w-[15rem] rounded-xl border border-primary/15 bg-card p-3.5 shadow-[0_15px_40px_-15px_rgba(193,95,60,0.3)] rotate-1"
+        style={{ y: driftInsight }}
+        className="absolute -right-4 sm:-right-12 -bottom-8 z-20 max-w-[15rem]"
       >
-        <div className="flex gap-2.5">
-          <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white [background:var(--gradient-accent)]">
-            <Sparkles className="h-3 w-3" />
-          </span>
-          <p className="text-[11px] leading-snug text-foreground/90">
-            Podés ahorrar <span className="font-semibold text-primary">Gs 320.000</span> este mes
-            reduciendo delivery.
-          </p>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          className="bk-float rounded-xl border border-primary/15 bg-card p-3.5 shadow-[0_15px_40px_-15px_rgba(193,95,60,0.3)] rotate-1"
+        >
+          <div className="flex gap-2.5">
+            <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white [background:var(--gradient-accent)]">
+              <Sparkles className="h-3 w-3" />
+            </span>
+            <p className="text-[11px] leading-snug text-foreground/90">
+              Podés ahorrar <span className="font-semibold text-primary">Gs 320.000</span> este mes
+              reduciendo delivery.
+            </p>
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   );
@@ -92,9 +114,21 @@ function HeroPreview() {
 
 export function Hero() {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const exit = useSectionExit(sectionRef);
+  const driftGoal = useTransform(exit, [0, 1], reduced ? [0, 0] : [0, 26]);
+  const driftInsight = useTransform(exit, [0, 1], reduced ? [0, 0] : [0, -20]);
+  const { rotateX, rotateY, onPointerMove, onPointerLeave } = useTilt(sectionRef);
 
   return (
-    <section id="top" className="relative pt-32 md:pt-44 pb-24 md:pb-32 overflow-hidden">
+    <section
+      id="top"
+      ref={sectionRef}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+      className="relative pt-32 md:pt-44 pb-24 md:pb-32 overflow-hidden"
+    >
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-14 lg:gap-8 items-center">
           <div className="max-w-2xl">
@@ -138,8 +172,10 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <div className="hidden lg:flex justify-center pl-6">
-            <HeroPreview />
+          <div className="hidden lg:flex justify-center pl-6 [perspective:1100px]">
+            <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
+              <HeroPreview driftGoal={driftGoal} driftInsight={driftInsight} />
+            </motion.div>
           </div>
         </div>
       </div>
