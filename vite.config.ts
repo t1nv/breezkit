@@ -1,8 +1,8 @@
 import { defineConfig, loadEnv, type UserConfig } from "vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import viteReact from "@vitejs/plugin-react";
+import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
+import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
-import tsConfigPaths from "vite-tsconfig-paths";
 import { nitro } from "nitro/vite";
 
 // Load ALL vars from .env (not just VITE_*) into process.env so server functions
@@ -21,7 +21,6 @@ export default defineConfig(({ command, mode }) => {
   const config: UserConfig = {
     plugins: [
       tailwindcss(),
-      tsConfigPaths({ projects: ["./tsconfig.json"] }),
       tanstackStart({
         // Fail the build if client code reaches into server modules.
         importProtection: {
@@ -37,6 +36,8 @@ export default defineConfig(({ command, mode }) => {
       // The nitro plugin only participates in builds; dev SSR is handled by tanstackStart.
       ...(command === "build" ? [nitro({ preset: "node-server" })] : []),
       viteReact(),
+      // React Compiler (automatic memoization); client-only, filtered to React-shaped code.
+      babel({ presets: [reactCompilerPreset()] }),
     ],
     server: {
       port: 8080,
@@ -48,9 +49,8 @@ export default defineConfig(({ command, mode }) => {
     // both keeps the preview honest.
     css: { transformer: "lightningcss" },
     resolve: {
-      alias: {
-        "@": `${process.cwd()}/src`,
-      },
+      // Vite 8 resolves tsconfig "paths" natively; the "@" alias comes from tsconfig.json.
+      tsconfigPaths: true,
       dedupe: [
         "react",
         "react-dom",
