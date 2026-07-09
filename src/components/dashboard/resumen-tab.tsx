@@ -331,7 +331,7 @@ export function ResumenTab({
                     <Cell key={i} fill={COLORS[i % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(v: number) => fmtPYG(v)} />
+                <Tooltip formatter={(v) => fmtPYG(Number(v))} />
               </PieChart>
             </ResponsiveContainer>
           )}
@@ -358,7 +358,7 @@ export function ResumenTab({
                 fontSize={11}
                 tickFormatter={(v) => (v >= 1000 ? `${(v / 1000).toFixed(0)}k` : String(v))}
               />
-              <Tooltip formatter={(v: number) => fmtPYG(v)} />
+              <Tooltip formatter={(v) => fmtPYG(Number(v))} />
               <Area
                 type="monotone"
                 dataKey="income"
